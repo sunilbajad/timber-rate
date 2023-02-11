@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="test.css">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <img src="test.jpg" alt="" style="width:40%;height:20%;">
+    <div class="container inp">
+        <label for="">length :</label>
+        <select id="inp1">
+            <option value="">select-lenght</option>
+            <option value="1-2.9">1-2.9</option>
+            <option value="3-3.99">3-3.99</option> 
+            <option value="4-4.99">4-4.99</option>
+            <option value="5-5.99">5-5.99</option>
+            <option value="6-6.99">6-6.99</option>
+            <option value="7-7.99">7-7.99</option>
+            <option value="8-8.99">8-8.99</option>
+            <option value="9-9.99">9-9.99</option>
+            <option value="10-10.99">10-10.99</option>
+            <option value="11-11.99">11-11.99</option>
+            <option value="12-12.99">12-12.99</option>
+            <option value="13-13.99">13-13.99</option>
+            <option value="14-15">14-15</option>
+        </select>
+        
+        <label for="">width :</label>
+        <select id="inp2">
+            <option value="">select-width</option>
+            <option value="1x1_to_1x1.9">1x1_to_1x1.9</option>
+            <option value="2x1_to_2x2.9">2x1_to_2x2.9</option>
+            <option value="3x1_to_3x3.9">3x1_to_3x3.9</option>
+            <option value="4x1_to_4x4.9">4x1_to_4x4.9</option>
+            <option value="5x1_to_5x5.9">5x1_to_5x5.9</option>
+            <option value="6x1_to_6x6.9">6x1_to_6x6.9</option>
+            <option value="7x1_to_7x7.9">7x1_to_7x7.9</option>
+            <option value="8x1_to_8x8">8x1_to_8x8</option>
+            <option value="8x8.1_to_8x8.9">8x8.1_to_8.9</option>
+            <option value="9x9.1_to_9x9.9">9x1_to_9x9.9</option>
+            <option value="10x1_to_10x10">10x1_to_10x10</option>
+            <option value="10x10.1_to_10x10.9">10x10.1_to_10x10.9</option>
+            <option value="11x11.1_to_11x11.9">11x1_to_11x11.9</option>
+            <option value="12x12.1_to_12x12.9">12x1_to_12x12.9</option>
+            <option value="13x13.1_to_13x13.9">13x1_to_13x13.9</option>
+            <option value="14x1_to_14x14">14x1_to_14x14</option>
+        </select>
+
+        <label for="">Quantity :</label>
+        <input type="number" name="" id="inp3" required>
+
+        <button onclick="addData()">submit</button>
+    </div>
+
+    <div class="contaner table">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>sr.no</th>
+                    <th>length</th>
+                    <th>width</th>
+                    <th>quntity</th>
+                    <th>price</th>
+                    <th>delete</th>
+                </tr>
+            </thead>
+            <tbody id="data">
+
+            </tbody>
+        </table>
+
+        <p>
+            Total Quantity = <span id="totalQuantity"></span> <br>
+            Total Price = <span id="totalPrice"></span>
+
+        </p>
+
+    </div>
+</center>
+</body>
+
+<script>
+    var tableData = [];
+    var calcData = {"1-2.9+1x1_to_1x1.9": 927, "1-2.9+2x1_to_2x2.9" : 1050, "1-2.9+3x1_to_3x3.9": 1200, "1-2.9+4x1_to_4x4.9" : 1600, "1-2.9+5x1_to_5x5.9" : 2000, "1-2.9+6x1_to_6x6.9" : 2400, "1-2.9+7x1_to_7x7.9" : 3000, "1-2.9+8x1_to_8x8" : 4000, "1-2.9+8x8.1_to_8x8.9" : 4200, "1-2.9+9x9.1_to_9x9.9" : 4200, "1-2.9+10x1_to_10x10" : 4200, "1-2.9+10x10.1_to_10x10.9" : 4600, "1-2.9+11x11.1_to_11x11.9" : 4600, "1-2.9+12x12.1_to_12x12.9" : 5000, "1-2.9+13x13.1_to_13x13.9" : 5000, "1-2.9+14x1_to_14x14" : 5000,
+    "3-3.99+1x1_to_1x1.9": 1633, "3-3.99+2x1_to_2x2.9" : 1821, "3-3.99+3x1_to_3x3.9": 2010, "3-3.99+4x1_to_4x4.9" : 2613, "3-3.99+5x1_to_5x5.9" : 2613, "3-3.99+6x1_to_6x6.9" : 3176, "3-3.99+7x1_to_7x7.9" : 4130, "3-3.99+8x1_to_8x8" : 4130, "3-3.99+8x8.1_to_8x8.9" : 4649, "3-3.99+9x9.1_to_9x9.9" : 4649, "3-3.99+10x1_to_10x10" : 4649, "3-3.99+10x10.1_to_10x10.9" : 4757, "3-3.99+11x11.1_to_11x11.9" : 4757, "3-3.99+12x12.1_to_12x12.9" : 4963, "3-3.99+13x13.1_to_13x13.9" : 5254, "3-3.99+14x1_to_14x14" : 5254,
+    "4-4.99+1x1_to_1x1.9": 1633, "4-4.99+2x1_to_2x2.9" : 1821, "4-4.99+3x1_to_3x3.9": 2010, "4-4.99+4x1_to_4x4.9" : 2613, "4-4.99+5x1_to_5x5.9" : 2613, "4-4.99+6x1_to_6x6.9" : 3176, "4-4.99+7x1_to_7x7.9" : 4130, "4-4.99+8x1_to_8x8" : 4130, "4-4.99+8x8.1_to_8x8.9" : 4649, "4-4.99+9x9.1_to_9x9.9" : 4649, "4-4.99+10x1_to_10x10" : 4649, "4-4.99+10x10.1_to_10x10.9" : 4757, "4-4.99+11x11.1_to_11x11.9" : 4757, "4-4.99+12x12.1_to_12x12.9" : 4963, "4-4.99+13x13.1_to_13x13.9" : 5254, "4-4.99+14x1_to_14x14" : 5254,
+    "5-5.99+1x1_to_1x1.9": 1633, "5-5.99+2x1_to_2x2.9" : 1821, "5-5.99+3x1_to_3x3.9": 2010, "5-5.99+4x1_to_4x4.9" : 2613, "5-5.99+5x1_to_5x5.9" : 2613, "5-5.99+6x1_to_6x6.9" : 3176, "5-5.99+7x1_to_7x7.9" : 4130, "5-5.99+8x1_to_8x8" : 4130, "5-5.99+8x8.1_to_8x8.9" : 4649, "5-5.99+9x9.1_to_9x9.9" : 4649, "5-5.99+10x1_to_10x10" : 4649, "5-5.99+10x10.1_to_10x10.9" : 4757, "5-5.99+11x11.1_to_11x11.9" : 4757, "5-5.99+12x12.1_to_12x12.9" : 4963, "5-5.99+13x13.1_to_13x13.9" : 5254, "5-5.99+14x1_to_14x14" : 5254,
+    "6-6.99+1x1_to_1x1.9": 1917, "6-6.99+2x1_to_2x2.9" : 2138, "6-6.99+3x1_to_3x3.9": 2359, "6-6.99+4x1_to_4x4.9" : 3067, "6-6.99+5x1_to_5x5.9" : 3067, "6-6.99+6x1_to_6x6.9" : 3599, "6-6.99+7x1_to_7x7.9" : 4608, "6-6.99+8x1_to_8x8" : 4608, "6-6.99+8x8.1_to_8x8.9" : 5168, "6-6.99+9x9.1_to_9x9.9" : 5168, "6-6.99+10x1_to_10x10" : 5168, "6-6.99+10x10.1_to_10x10.9" : 5628, "6-6.99+11x11.1_to_11x11.9" : 5628, "6-6.99+12x12.1_to_12x12.9" : 5949, "6-6.99+13x13.1_to_13x13.9" : 6120, "6-6.99+14x1_to_14x14" : 6120,
+    "7-7.99+1x1_to_1x1.9": 1917, "7-7.99+2x1_to_2x2.9" : 2138, "7-7.99+3x1_to_3x3.9": 2359, "7-7.99+4x1_to_4x4.9" : 3067, "7-7.99+5x1_to_5x5.9" : 3067, "7-7.99+6x1_to_6x6.9" : 3599, "7-7.99+7x1_to_7x7.9" : 4608, "7-7.99+8x1_to_8x8" : 4608, "7-7.99+8x8.1_to_8x8.9" : 5168, "7-7.99+9x9.1_to_9x9.9" : 5168, "7-7.99+10x1_to_10x10" : 5168, "7-7.99+10x10.1_to_10x10.9" : 5628, "7-7.99+11x11.1_to_11x11.9" : 5628, "7-7.99+12x12.1_to_12x12.9" : 5949, "7-7.99+13x13.1_to_13x13.9" : 6120, "7-7.99+14x1_to_14x14" : 6120,
+    "8-8.99+1x1_to_1x1.9": 1917, "8-8.99+2x1_to_2x2.9" : 2138, "8-8.99+3x1_to_3x3.9": 2359, "8-8.99+4x1_to_4x4.9" : 3067, "8-8.99+5x1_to_5x5.9" : 3067, "8-8.99+6x1_to_6x6.9" : 3599, "8-8.99+7x1_to_7x7.9" : 4608, "8-8.99+8x1_to_8x8" : 4608, "8-8.99+8x8.1_to_8x8.9" : 5168, "8-8.99+9x9.1_to_9x9.9" : 5168, "8-8.99+10x1_to_10x10" : 5168, "8-8.99+10x10.1_to_10x10.9" : 5628, "8-8.99+11x11.1_to_11x11.9" : 5628, "8-8.99+12x12.1_to_12x12.9" : 5949, "8-8.99+13x13.1_to_13x13.9" : 6120, "8-8.99+14x1_to_14x14" : 6120,
+    "9-9.99+1x1_to_1x1.9": 0, "9-9.99+2x1_to_2x2.9" : 2498, "9-9.99+3x1_to_3x3.9": 2498, "9-9.99+4x1_to_4x4.9" : 3247, "9-9.99+5x1_to_5x5.9" : 3247, "9-9.99+6x1_to_6x6.9" : 4069, "9-9.99+7x1_to_7x7.9" : 4927, "9-9.99+8x1_to_8x8" : 4927, "9-9.99+8x8.1_to_8x8.9" : 5524, "9-9.99+9x9.1_to_9x9.9" : 5524, "9-9.99+10x1_to_10x10" : 5524, "9-9.99+10x10.1_to_10x10.9" : 6161, "9-9.99+11x11.1_to_11x11.9" : 6161, "9-9.99+12x12.1_to_12x12.9" : 6535, "9-9.99+13x13.1_to_13x13.9" : 0, "9-9.99+14x1_to_14x14" : 0,
+    "10-10.99+1x1_to_1x1.9": 0, "10-10.99+2x1_to_2x2.9" : 2498, "10-10.99+3x1_to_3x3.9": 2498, "10-10.99+4x1_to_4x4.9" : 3247, "10-10.99+5x1_to_5x5.9" : 3247, "10-10.99+6x1_to_6x6.9" : 4069, "10-10.99+7x1_to_7x7.9" : 4927, "10-10.99+8x1_to_8x8" : 4927, "10-10.99+8x8.1_to_8x8.9" : 5524, "10-10.99+9x9.1_to_9x9.9" : 5524, "10-10.99+10x1_to_10x10" : 5524, "10-10.99+10x10.1_to_10x10.9" : 0, "10-10.99+11x11.1_to_11x11.9" : 0, "10-10.99+12x12.1_to_12x12.9" : 0, "10-10.99+13x13.1_to_13x13.9" : 0, "10-10.99+14x1_to_14x14" : 0,
+    "11-11.99+1x1_to_1x1.9": 0, "11-11.99+2x1_to_2x2.9" : 2498, "11-11.99+3x1_to_3x3.9": 2498, "11-11.99+4x1_to_4x4.9" : 3247, "11-11.99+5x1_to_5x5.9" : 3247, "11-11.99+6x1_to_6x6.9" : 4069, "11-11.99+7x1_to_7x7.9" : 4927, "11-11.99+8x1_to_8x8" : 4927, "11-11.99+8x8.1_to_8x8.9" : 0, "11-11.99+9x9.1_to_9x9.9" : 0, "11-11.99+10x1_to_10x10" : 0, "11-11.99+10x10.1_to_10x10.9" : 0, "11-11.99+11x11.1_to_11x11.9" : 0, "11-11.99+12x12.1_to_12x12.9" : 0, "11-11.99+13x13.1_to_13x13.9" : 0, "11-11.99+14x1_to_14x14" : 0,
+    "12-12.99+1x1_to_1x1.9": 0, "12-12.99+2x1_to_2x2.9" : 2498, "12-12.99+3x1_to_3x3.9": 2498, "12-12.99+4x1_to_4x4.9" : 3247, "12-12.99+5x1_to_5x5.9" : 3247, "12-12.99+6x1_to_6x6.9" : 4069, "12-12.99+7x1_to_7x7.9" : 4927, "12-12.99+8x1_to_8x8" : 4927, "12-12.99+8x8.1_to_8x8.9" : 0, "12-12.99+9x9.1_to_9x9.9" : 0, "12-12.99+10x1_to_10x10" : 0, "12-12.99+10x10.1_to_10x10.9" : 0, "12-12.99+11x11.1_to_11x11.9" : 0, "12-12.99+12x12.1_to_12x12.9" : 0, "12-12.99+13x13.1_to_13x13.9" : 0, "12-12.99+14x1_to_14x14" : 0,
+    "13-13.99+1x1_to_1x1.9": 0, "13-13.99+2x1_to_2x2.9" : 2640, "13-13.99+3x1_to_3x3.9": 2640, "13-13.99+4x1_to_4x4.9" : 3431, "13-13.99+5x1_to_5x5.9" : 3431, "13-13.99+6x1_to_6x6.9" : 4175, "13-13.99+7x1_to_7x7.9" : 0, "13-13.99+8x1_to_8x8" : 0, "13-13.99+8x8.1_to_8x8.9" : 0, "13-13.99+9x9.1_to_9x9.9" : 0, "13-13.99+10x1_to_10x10" : 0, "13-13.99+10x10.1_to_10x10.9" : 0, "13-13.99+11x11.1_to_11x11.9" : 0, "13-13.99+12x12.1_to_12x12.9" : 0, "13-13.99+13x13.1_to_13x13.9" : 0, "13-13.99+14x1_to_14x14" : 0,
+    "14-15+1x1_to_1x1.9": 0, "14-15+2x1_to_2x2.9" : 2640, "14-15+3x1_to_3x3.9": 2640, "14-15+4x1_to_4x4.9" : 3431, "14-15+5x1_to_5x5.9" : 3431, "14-15+6x1_to_6x6.9" : 4175, "14-15+7x1_to_7x7.9" : 0, "14-15+8x1_to_8x8" : 0, "14-15+8x8.1_to_8x8.9" : 0, "14-15+9x9.1_to_9x9.9" : 0, "14-15+10x1_to_10x10" : 0, "14-15+10x10.1_to_10x10.9" : 0, "14-15+11x11.1_to_11x11.9" : 0, "14-15+12x12.1_to_12x12.9" : 0, "14-15+13x13.1_to_13x13.9" : 0, "14-15+14x1_to_14x14" : 0
+                    };
+
+    function addData(){
+        var length = document.getElementById("inp1").value;
+        var width = document.getElementById("inp2").value;
+        var quntity = document.getElementById("inp3").value;
+
+        var price = calcData[`${length}+${width}`] * quntity;
+
+        
+        if(quntity == 0){
+            alert("pleas select quntity !!")
+        }
+        else{
+             if(price == 0){
+             alert("unavailabl!!");
+            }
+            else{
+            tableData.push({'length':length,'width':width,'quntity': quntity, 'price':price});
+            loadData();
+            }
+        }
+    }
+
+    function loadData(){
+        emptyTable();
+
+        var table = document.getElementById("data").innerHTML;
+        var totalPrice = 0;
+        var totalQty = 0;
+        for(let i = 0;i < tableData.length; i++){
+            table+=
+                `<tr>
+                    <td>${i+1}</td>
+                    <td>${tableData[i]["length"]}</td>
+                    <td>${tableData[i]["width"]}</td>
+                    <td>${tableData[i]["quntity"]}</td>
+                    <td>${tableData[i]["price"]}</td>
+                    <td><button onclick="deleteTask(${i})">delete</button></td>
+                    </tr>`
+                    totalPrice += parseInt(tableData[i]["price"]);
+                    totalQty += parseInt(tableData[i]["quntity"]);
+        }
+        document.getElementById("data").innerHTML= table;
+        document.getElementById("totalQuantity").innerHTML = totalQty;
+        document.getElementById("totalPrice").innerHTML = totalPrice;
+    }
+
+    function emptyTable(){
+        document.getElementById("data").innerHTML = "";
+    }
+
+    function deleteTask(index){
+        tableData.splice(index,1);
+        loadData();
+    }
+    
+    
+</script>
+</html>
